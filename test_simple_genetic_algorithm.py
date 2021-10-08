@@ -1,17 +1,24 @@
 # Testing Chromosome class methods
 
 from simple_genetic_algorithm import Chromosome
-
+import random
+import numpy as np
 
 def test_chromosome():
-    father = Chromosome([0, 1, 1, 2, 3, 4, 5])
-    mother = Chromosome([10, 39, 59, 72, 59, 10, 99])
+    father = Chromosome([False, False, False, False, False], pm = 0.2)
+    mother = Chromosome([True, True, True, True, True], pm = 0.2)
+    child = test_crossover(father, mother)
+    print(child.sequence)
 
-    print(father)
-    print(mother)
+    child = test_mutate(child)
+    print(child.sequence)
 
-    print(father.crossover(mother))
 
+def test_mutate(chromosome):
+    return chromosome.mutate()
+
+def test_crossover(father, mother):
+    return father.crossover(mother)
 
 def main():
     test_chromosome()
